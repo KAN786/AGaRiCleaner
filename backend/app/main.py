@@ -2,6 +2,4 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+app.include_router(user.router, prefix="/users", tags=["Users"])
