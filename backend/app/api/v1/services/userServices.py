@@ -4,16 +4,14 @@ from collections import deque
 
 
 
-class User:
-    id: int
+class UserServices:
     honorLevel: int
     messageEvalList: deque[tuple[bool, int]]
 
     learningRate = 0.1
     bayesianCnt = 50
 
-    def __init__(self, id: int, honorLevel: int, messageEvalList: deque[tuple[bool, int]]):
-        self.id = id
+    def __init__(self, honorLevel: int, messageEvalList: deque[tuple[bool, int]]):
         self.honorLevel = honorLevel
         self.messageEvalList = messageEvalList
 
@@ -21,7 +19,7 @@ class User:
         def calc(x: tuple[bool, int]):
             
             delta = self.learningRate * x[1] * self.honorLevel * (1 - self.honorLevel);
-            delta = delta if x[1] else -delta
+            delta = -delta if x[0] else delta
             self.honorLevel += delta
         
         # 추가
@@ -43,9 +41,6 @@ class User:
 
 
 
-    def getId(self) -> int:
-        return self.id
-    
     def getHonorLevel(self) -> int:
         return self.honorLevel
     

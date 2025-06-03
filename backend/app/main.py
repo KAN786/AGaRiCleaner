@@ -11,10 +11,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan = lifespan)
 
-@app.on_event("startup")
-def on_startup():
+
+
+@asynccontextmanager
+async def on_startup(app: FastAPI):
     init_db()
 
+    
 @app.get("/")
 def read_root():
     return {"message": "SQLite + FastAPI connected!"}
