@@ -15,6 +15,9 @@ def get_average_honor_score(server_id: str, session: Session = Depends(get_sessi
         raise HTTPException(status_code = 404, details = "Server not found")
 
     return server
+
+
+
 # create server
 @router.post("/", response_model = Server)
 def create_server(server_create: ServerCreate, session: Session = Depends(get_session)):
@@ -26,29 +29,34 @@ def create_server(server_create: ServerCreate, session: Session = Depends(get_se
     if existing_server:
         raise HTTPException(status_code = 400, detail=f"Server with id {server_create.id} already exists")
 
-    server = Server.model_validate(ServerCreate)
+    server = Server.model_validate(server_create)
 
     session.add(server)
     session.commit()
     session.refresh(server)
     return server
     
+
+
+
 # update (post) average honor score (or other things as well perhaps)
-@router.patch("/{server_id}", response_model = Server)
-def update_server(id: str, server_update: ServerUpdate, session: Session = Depends(get_session)):
-    server = session.exec(
-        select(Server).where(
-            Server.id == id
-    )).one()
 
-    if not server:
-        raise HTTPException(status_code = 404, detail = "Server not found")
+# @router.patch("/{server_id}", response_model = Server)
+# def update_server(id: str, server_update: ServerUpdate, session: Session = Depends(get_session)):
+#     server = session.exec(
+#         select(Server).where(
+#             Server.id == id
+#     )).one()
 
-    update_server = server_update.model_dump(exclude_unset=True)
-    for key, value in update_server.items():
-        setattr(server, key, value)
+#     if not server:
+#         raise HTTPException(status_code = 404, detail = "Server not found")
 
-    session.add(server)
-    session.commit()
-    session.refresh(server)
-    return server
+#     update_server = server_update.model_dump(exclude_unset=True)
+#     for key, value in update_server.items():
+#         setattr(server, key, value)
+
+#     session.add(server)
+#     session.commit()
+#     session.refresh()
+#     return server
+

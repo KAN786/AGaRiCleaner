@@ -13,27 +13,27 @@ router = APIRouter()
 
 # gets all users from a certain server
 
-@router.get("/{server_id}")
-def get_users(server_id: str, session: Session = Depends(get_session)):
-    users = session.exec(
-        select(User).where(
-            User.server_id == server_id
-        )
-    ).all()
+# @router.get("/{server_id}")
+# def get_users(server_id: str, session: Session = Depends(get_session)):
+#     users = session.exec(
+#         select(User).where(
+#             User.server_id == server_id
+#         )
+#     ).all()
 
-    if not users:
-        raise HTTPException(status_code = 404, detail = "Server not found")
+#     if not users:
+#         raise HTTPException(status_code = 404, detail = "Server not found")
     
-    return users
+#     return users
 
-@router.get("/{server_id}/{system_id}")
-def get_user(server_id: str, system_id: str, session: Session = Depends(get_session)):
-    user = session.get(User, server_id, system_id)
+# @router.get("/{server_id}/{system_id}")
+# def get_user(server_id: str, system_id: str, session: Session = Depends(get_session)):
+#     user = session.get(User, server_id, system_id)
 
-    if not user:
-        raise HTTPException(status_code = 404, detail = "User not found")
+#     if not user:
+#         raise HTTPException(status_code = 404, detail = "User not found")
     
-    return user
+#     return user
 
 @router.post("/", response_model = User)
 def create_user(user_create: UserCreate, session: Session = Depends(get_session)):
