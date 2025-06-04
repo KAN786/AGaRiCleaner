@@ -1,8 +1,10 @@
 
 
 from collections import deque
-
-
+from transformers import AutoTokenizer, AutoModel
+import requests
+import time 
+from gradio_client import Client
 
 class UserServices:
     honorLevel: int
@@ -48,5 +50,29 @@ class UserServices:
         return self.messageEvalList
 
 
+
+class MessageServices:
     
+    def __init__(self, client: Client):
+        self.client = client
+        pass
+
+        
+
+    def get_agaricleaner_result(self, message: str):
+        
+        result = self.client.predict(
+                texts=message,
+                api_name="/predict"
+        )
+        return result
+        
+
+
+if __name__ == "__main__":
+    messageServices = MessageServices(Client("CLOUDYUL/AGaRiCleaner_Detector"))
+
+    print("Agaricleaner Result:")
+    result = messageServices.get_agaricleaner_result("씨발 존나게 더럽네")
+    print(result)
 

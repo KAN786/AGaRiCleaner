@@ -1,10 +1,11 @@
 # backend/app/api/v1/endpoints/message.py
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 from datetime import datetime
 from app.models import Message, User
-from app.api.v1.services.userServices import UserServices
+from app.api.v1.services.services import UserServices, MessageServices
 from app.database import get_session
+from fastapi import Request
 
 import random
 router = APIRouter()
@@ -20,11 +21,13 @@ router = APIRouter()
 
 
 @router.get("/{user_server_id}/{user_system_id}")
-def eval_message(
+async def eval_message(
     user_server_id: str,
     user_system_id: str, 
     message: str, 
-    session: Session = Depends(get_session)):
+    request: Request,
+    session: Session = Depends(get_session)
+    ):
 
     
 
@@ -44,7 +47,10 @@ def eval_message(
 
     if not user:
         # 400 에러 반환
-        raise HTTPException(status_code=400, detail="User not found")
+        raise HTTPException(
+            status_code=400,
+            detail=f"User {user_server_id} doesn't exists"
+        )
 
 
     user_id = user.id
@@ -63,6 +69,7 @@ def eval_message(
 
 
     if(
+        False
         # 첫번째 필터에서 통과하지 못한 경우. 노골적인 욕설이라 1점
     ):
         score = 1
@@ -74,7 +81,15 @@ def eval_message(
         # 필터링 당첨
         if(random.random() < p):
             # do test
+            messageServices = MessageServices(request.app.state.client)
+            result = messageServices.get_agaricleaner_result(message)
+
+            result_text = result["text"]
+            result_label = result["label"]
+            test_score = result["score"]
+
             if (
+                result_label
                 # 부정적일 시
             ):
                 is_toxic = True
