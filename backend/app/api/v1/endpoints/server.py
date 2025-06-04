@@ -40,21 +40,23 @@ def create_server(server_create: ServerCreate, session: Session = Depends(get_se
 
 
 # update (post) average honor score (or other things as well perhaps)
-@router.patch("/{server_id}", response_model = Server)
-def update_server(id: str, server_update: ServerUpdate, session: Session = Depends(get_session)):
-    server = session.exec(
-        select(Server).where(
-            Server.id == id
-    )).one()
 
-    if not server:
-        raise HTTPException(status_code = 404, detail = "Server not found")
+# @router.patch("/{server_id}", response_model = Server)
+# def update_server(id: str, server_update: ServerUpdate, session: Session = Depends(get_session)):
+#     server = session.exec(
+#         select(Server).where(
+#             Server.id == id
+#     )).one()
 
-    update_server = server_update.model_dump(exclude_unset=True)
-    for key, value in update_server.items():
-        setattr(server, key, value)
+#     if not server:
+#         raise HTTPException(status_code = 404, detail = "Server not found")
 
-    session.add(server)
-    session.commit()
-    session.refresh()
-    return server
+#     update_server = server_update.model_dump(exclude_unset=True)
+#     for key, value in update_server.items():
+#         setattr(server, key, value)
+
+#     session.add(server)
+#     session.commit()
+#     session.refresh()
+#     return server
+
