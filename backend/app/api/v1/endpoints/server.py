@@ -30,7 +30,7 @@ def create_server(server_create: ServerCreate, session: Session = Depends(get_se
 
     session.add(server)
     session.commit()
-    session.refresh()
+    session.refresh(server)
     return server
     
 # update (post) average honor score (or other things as well perhaps)
@@ -50,5 +50,5 @@ def update_server(id: str, server_update: ServerUpdate, session: Session = Depen
 
     session.add(server)
     session.commit()
-    session.refresh()
+    session.refresh(server)
     return server
