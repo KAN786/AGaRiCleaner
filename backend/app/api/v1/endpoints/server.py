@@ -57,6 +57,6 @@ def create_server(server_create: ServerCreate, session: Session = Depends(get_se
 
 #     session.add(server)
 #     session.commit()
-#     session.refresh()
+#     session.refresh(server)
 #     return server
 
