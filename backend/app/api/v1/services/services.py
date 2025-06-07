@@ -1,64 +1,55 @@
-
-
 from collections import deque
 from gradio_client import Client
 
 from fastapi import Depends, HTTPException
-from sqlmodel import Session, select, func
-from app.database import get_session
+from app.database import db
 from app.models import User, Server
 
 from app.schemas.user_schemas import UserCreate, UserUpdate
 from app.schemas.server_schemas import ServerCreate
 
 class UserServices:
-    honorLevel: int
-    messageEvalList: deque[tuple[bool, int]]
+    honorLevel: float
+    messageEvalList: deque[tuple[bool, float]]
 
     learningRate = 0.05
     bayesianCnt = 50
 
-    def __init__(self, system_id: str, server_id: int, session: Session):
+    def __init__(self, system_id: str, server_id: str): # server_id used to be int, probably outdated
         self.system_id = system_id
         self.server_id = server_id
-        self.user: User
+        # self.user: User (not needed)
         self.honorLevel: float
-
-        self.session = session
         
+
         # 서버 없으면 만들기
-        try:    
-            create_server(ServerCreate(id=server_id), session)
-        except HTTPException as e:
-            pass
-        
-        # 유저 없으면 만들기
         try:
-            # 서버의 평균 honor_score 가져오기
-
-            create_user(UserCreate(system_id=system_id, server_id=server_id, honor_score=0.5), session=session)
-        except HTTPException as e:
+            create_server(ServerCreate(id=server_id))
+        except HTTPException:
             pass
+
+
+        # 유저 없으면 만들기
+        user_ref = db.collection("servers").document(server_id).collection("users").document(system_id)
+        user_snapshot = user_ref.get()
+        if not user_snapshot.exists:
+            user_ref.set(UserCreate(system_id=system_id, server_id=server_id, honor_score=0.5).model_dump())
+            self.honorLevel = 0.5
+        else:
+            user_data = user_snapshot.to_dict()
+            self.honorLevel = user_data.get("honor_score", 0.5)
+
+        # Firestore doesn't require you to get messages via User, but rather the Message table itself        
+
+        messages = user_ref.collection("messages") \
+            .order_by("date_sent", direction="DESCENDING") \
+            .limit(210).stream()
         
-
-        # db에서 유저 가져오기
-        self.user = session.exec(
-            select(User).where(
-                (User.server_id == server_id) & 
-                (User.system_id == system_id)
-            )
-        ).one()
-
-        if not self.user:
-            # 400 에러 반환
-            raise HTTPException(
-                status_code=400,
-                detail=f"User {server_id} doesn't exists"
-            )
-
-
-        self.honorLevel = self.user.honor_score
-        self.messageEvalList = [(msg.is_toxic, msg.score) for msg in self.user.messages]
+        # sets default score to 0.5 if for whatever reason, it wasn't set
+        self.messageEvalList = deque([
+            (doc.to_dict()["is_toxic"], doc.to_dict().get("score", 0.5)) 
+            for doc in messages
+        ])
 
     def update_honor(self, evalResult: tuple[bool, int]):
         def calc(x: tuple[bool, int]):
@@ -77,15 +68,13 @@ class UserServices:
             temp = self.messageEvalList.popleft()
             calc((not temp[0], temp[1]))
 
+
         update_user(UserUpdate(
             system_id=self.system_id,
             server_id=self.server_id,
             honor_score=self.honorLevel
-        ), session=self.session)
+        ))
 
-        
-            
-    
     def getBayesianHonorLevel(self, serverAverage) -> float:
         v = len(self.messageEvalList)
 
@@ -93,7 +82,6 @@ class UserServices:
                self.bayesianCnt / (v + self.bayesianCnt) * serverAverage
 
 
-        
 def get_agaricleaner_result(client: Client, message: str):
     
     result = client.predict(
@@ -103,66 +91,30 @@ def get_agaricleaner_result(client: Client, message: str):
     return result
         
 
-def create_user(user_create: UserCreate, session: Session):
-    existing_user = session.exec(
-        select(User).where(
-            User.system_id == user_create.system_id
-    )).first()
+def create_user(user_create: UserCreate):
+    user_ref = db.collection("servers").document(user_create.server_id).collection("users").document(user_create.system_id)
+    if user_ref.get().exists:
+        raise HTTPException(status_code=400, detail="User already exists")
+    user_ref.set(user_create.model_dump())
 
-    if existing_user:
-        raise HTTPException(
-            status_code=400,
-            detail=f"User with system_id {user_create.system_id} already exists"
-        )
-    
-    user = User.model_validate(user_create)
+def update_user(user_update: UserUpdate):
+    user_ref = db.collection("servers").document(user_update.server_id).collection("users").document(user_update.system_id)
+    if not user_ref.get().exists:
+        raise HTTPException(status_code=404, detail="User not found")
+    update_data = user_update.model_dump(exclude_unset=True)
+    user_ref.update(update_data)
 
-    session.add(user)
-    session.commit()
-    session.refresh(user)
-    return user
+def create_server(server_create: ServerCreate):
+    server_ref = db.collection("servers").document(server_create.id)
+    if server_ref.get().exists:
+        raise HTTPException(status_code=400, detail="Server already exists")
+    server_ref.set(server_create.model_dump())
 
-def update_user(user_update: UserUpdate, session: Session):
-    user = session.exec(
-        select(User).where(
-            (User.server_id == user_update.server_id) & (User.system_id == user_update.system_id)
-        )
-    ).one()
-
-    if not user:
-        raise HTTPException(status_code = 404, detail = "User not found")
-    
-    update_data = user_update.model_dump(exclude_unset = True)
-    for key, value in update_data.items():
-        setattr(user, key, value)
-
-    session.add(user)
-    session.commit()
-    session.refresh(user)
-    return user
-
-def create_server(server_create: ServerCreate, session: Session):
-    existing_server = session.exec(
-        select(Server).where(
-            Server.id == server_create.id
-    )).first()
-
-    if existing_server:
-        raise HTTPException(status_code = 400, detail=f"Server with id {server_create.id} already exists")
-
-    server = Server.model_validate(server_create)
-
-    session.add(server)
-    session.commit()
-    session.refresh(server)
-    return server
-
-def get_server_average_honor_score(server_id: str, session: Session):
-    avg_score = session.exec(
-        select(func.avg(User.honor_score))
-        .where(User.server_id == server_id)
-    ).one()
-    return avg_score or 0.5
+def get_server_average_honor_score(server_id: str):
+    users_ref = db.collection("servers").document(server_id).collection("users")
+    user_docs = users_ref.stream()
+    scores = [doc.to_dict().get("honor_score", 0.5) for doc in user_docs]
+    return sum(scores) / len(scores) if scores else 0.5
 
 if __name__ == "__main__":
     messageServices = MessageServices(Client("CLOUDYUL/AGaRiCleaner_Detector"))

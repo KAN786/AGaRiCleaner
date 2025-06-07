@@ -1,13 +1,13 @@
 # backend/app/api/v1/endpoints/message.py
-from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import Session, select
+from fastapi import APIRouter, Request, HTTPException
 from datetime import datetime
 from app.models import Message, User
+from app.database import db
 from app.api.v1.services.services import UserServices, get_agaricleaner_result, get_server_average_honor_score
-from app.database import get_session
-from fastapi import Request
 
 import random
+import uuid
+
 router = APIRouter()
 
 
@@ -17,10 +17,8 @@ async def eval_message(
     system_id: str, 
     message: str, 
     request: Request,
-    session: Session = Depends(get_session)
     ):
 
-    
     date_sent: datetime = datetime.now()
     word_count: int = len(message.split())
     score: float
@@ -28,9 +26,9 @@ async def eval_message(
 
 
 
-    # 계산용 객체에 넣기
-    userServices = UserServices(system_id, server_id, session)
-    server_average_honor_score = get_server_average_honor_score(server_id, session)
+    userServices = UserServices(system_id, server_id)
+    server_average_honor_score = get_server_average_honor_score(server_id)
+
 
 
     if(
@@ -66,16 +64,22 @@ async def eval_message(
             pass
 
         
-    result_message = Message(
-        user_id=userServices.user.id,
-        date_sent=date_sent,
-        word_count=word_count,
-        score=score,
-        is_toxic=is_toxic
-    )
-    session.add(result_message)
-    session.commit()
-    session.refresh(result_message)
-    return result_message
+    # firestore 에 메시지 데이터 저장
+    message_data = {
+        "system_id" : system_id,
+        "server_id" : server_id,
+        "date_sent": date_sent.isoformat(),
+        "word_count": word_count,
+        "score": score,
+        "is_toxic": is_toxic,
+    }
+
+    message_id = str(uuid.uuid4())  # 자동 생성 메시지 ID (uuid4는 기준 없는 랜덤 uid)
+    db.collection("servers").document(server_id)\
+      .collection("users").document(system_id)\
+      .collection("messages").document(message_id).set(message_data)
+
+    return message_data
+
 
 
