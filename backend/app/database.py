@@ -1,12 +1,7 @@
-# backend/app/database.py
-from sqlmodel import SQLModel, create_engine, Session
+import firebase_admin
+from firebase_admin import credentials, firestore
 
-DATABASE_URL = "sqlite:///./agaricleaner.db"
-engine = create_engine(DATABASE_URL, echo=True)
+cred = credentials.Certificate("path/to/serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
 
-def init_db():
-    SQLModel.metadata.create_all(engine)
-
-def get_session():
-    with Session(engine) as session:
-        yield session
+db = firestore.client()

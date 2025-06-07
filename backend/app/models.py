@@ -1,35 +1,26 @@
 # backend/app/models.py
-from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional
+# from sqlmodel import SQLModel, Field, Relationship (firebase is NoSQL)
+from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional, List
 
-class Server(SQLModel, table = True):
+class Server(BaseModel):
     # other platforms might keep server id as a combination of char and int
-    id: str = Field(default=None, primary_key=True) 
+    id: str # discord Server ID 
 
-    users: List["User"] = Relationship(back_populates="server")
-    # messages: List["Message"] = Relationship(back_populates="server")
-
-class User(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True) # has autoincrement integrated by default
+class User(BaseModel):
+    # id: Optional[int] # FE doesn't need to access this
     # system_name: str
     system_id: str
-    server_id: str = Field(foreign_key="server.id")
+    server_id: str
     honor_score: float
 
-    server: Optional[Server] = Relationship(back_populates="users")
-    messages: List["Message"] = Relationship(back_populates="user")
-
-class Message(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="user.id")
+class Message(BaseModel):
+    # id: Optional[int] # FE doesn't need to access this
+    system_id: str
+    server_id: str
     date_sent: datetime
     word_count: int
-    # first_filter_passed: bool
-    # second_filter_checked: bool
     score: Optional[float] = None
     is_toxic: bool
-
-    user: Optional[User] = Relationship(back_populates="messages")
 
