@@ -53,3 +53,5 @@ agaricleanerdb-firebase-adminsdk-fbsvc-b7483c5bb1.json
 
 # distribution related info
 .gcloudignore
+
+.DS_Store
