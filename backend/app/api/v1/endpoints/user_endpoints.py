@@ -11,13 +11,14 @@ import json
 router = APIRouter()
 
 
+from pydantic import BaseModel
+
+class MessageInput(BaseModel):
+    message: str
+
 @router.post("/{server_id}/{system_id}")
-async def eval_message(
-    server_id: str,
-    system_id: str, 
-    message: str, 
-    request: Request,
-    ):
+async def eval_message(server_id: str, system_id: str, input: MessageInput, request: Request):
+    message = input.message
 
     date_sent: datetime = datetime.now()
     word_count: int = len(message.split())
