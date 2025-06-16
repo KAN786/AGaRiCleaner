@@ -47,3 +47,9 @@ coverage.xml
 # 기타
 *.bak
 *.tmp
+
+# json key
+agaricleanerdb-firebase-adminsdk-fbsvc-b7483c5bb1.json
+
+# distribution related info
+.gcloudignore
