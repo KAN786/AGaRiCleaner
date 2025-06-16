@@ -7,7 +7,7 @@ from app.api.v1.services.services import UserServices, get_agaricleaner_result, 
 
 import random
 import uuid
-
+import json
 router = APIRouter()
 
 
@@ -30,38 +30,34 @@ async def eval_message(
     server_average_honor_score = get_server_average_honor_score(server_id)
 
 
+    with open("app/api/v1/endpoints/badwords.json", "r", encoding="utf-8") as f:
+        data = json.load(f)["badwords"]
 
-    if(
-        False
-        # 첫번째 필터에서 통과하지 못한 경우. 노골적인 욕설이라 1점
-    ):
-        score = 1
-        is_toxic = True
-    else:
-        score = userServices.getBayesianHonorLevel(server_average_honor_score)
-        p = (1 - score) * 1
+       
+    score = userServices.getBayesianHonorLevel(server_average_honor_score)
+    p = (1 - score) * 1
 
-        # 필터링 당첨
-        if(random.random() < p):
-            result = get_agaricleaner_result(request.app.state.client, message)
+    # 필터링 당첨
+    if(random.random() < p or any(word in message for word in data)):
+        result = get_agaricleaner_result(request.app.state.client, message)
 
-            result_label = result[0]["label"]
-            score = result[0]["score"]
+        result_label = result[0]["label"]
+        score = result[0]["score"]
 
-            if (
-                result_label
-                # 부정적일 시
-            ):
-                is_toxic = True
-                userServices.update_honor((True, score))
-            else:
-                is_toxic = False
-                userServices.update_honor((False, score))
-        # 그냥 넘어감. 테스트 안했으니 0.5점
+        if (
+            result_label
+            # 부정적일 시
+        ):
+            is_toxic = True
+            userServices.update_honor((True, score))
         else:
             is_toxic = False
-            score = 0.5
-            pass
+            userServices.update_honor((False, score))
+    # 그냥 넘어감. 테스트 안했으니 0.5점
+    else:
+        is_toxic = False
+        score = 0.5
+        pass
 
         
     # firestore 에 메시지 데이터 저장
