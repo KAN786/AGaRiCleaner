@@ -3,7 +3,7 @@ from fastapi import APIRouter, Request, HTTPException
 from datetime import datetime
 from app.models import Message, User
 from app.database import db
-from app.api.v1.services.services import UserServices, get_agaricleaner_result, get_server_average_honor_score
+from app.api.v1.services.services import UserServices, get_agaricleaner_result, get_server_average_honor_score, get_user_honor_score
 
 import random
 import uuid
@@ -69,6 +69,7 @@ async def eval_message(server_id: str, system_id: str, input: MessageInput, requ
         "word_count": word_count,
         "score": score,
         "is_toxic": is_toxic,
+        "honor_level": get_user_honor_score(server_id, system_id)
     }
 
     message_id = str(uuid.uuid4())  # 자동 생성 메시지 ID (uuid4는 기준 없는 랜덤 uid)
