@@ -1,0 +1,681 @@
+[
+  {
+    "text": "진짜 개같이 생겼네",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5
+  },
+  {
+    "text": "표현이 너무 예뻐요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5
+  },
+  {
+    "text": "그 입 다물고 사라져라",
+    "label": 1,
+    "score": 0.9886425137519836,
+    "is_toxic": true,
+    "honor_level": 0.4950567874312401
+  },
+  {
+    "text": "말 한마디에 이렇게 기분 좋아질 줄이야",
+    "label": 0,
+    "score": 0.999174177646637,
+    "is_toxic": false,
+    "honor_level": 0.5000521700160484
+  },
+  {
+    "text": "눈 썩었다",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5000521700160484
+  },
+  {
+    "text": "당신 덕분에 위로받았습니다",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5000521700160484
+  },
+  {
+    "text": "그 얼굴로 자신감은 있네",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5000521700160484
+  },
+  {
+    "text": "너무 잘했어",
+    "label": 0,
+    "score": 0.9987490177154541,
+    "is_toxic": false,
+    "honor_level": 0.5050459150502595
+  },
+  {
+    "text": "입 열지 마라",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5050459150502595
+  },
+  {
+    "text": "긍정 에너지 받아갑니다",
+    "label": 0,
+    "score": 0.9988089799880981,
+    "is_toxic": false,
+    "honor_level": 0.5100394513315235
+  },
+  {
+    "text": "나가서 뒤져버리렴",
+    "label": 1,
+    "score": 0.9967398047447205,
+    "is_toxic": true,
+    "honor_level": 0.505057761547521
+  },
+  {
+    "text": "이런 콘텐츠 너무 좋아요, 자주 올려줘요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.505057761547521
+  },
+  {
+    "text": "씨발 왜 저딴 글을 쓰냐",
+    "label": 1,
+    "score": 0.9969344139099121,
+    "is_toxic": true,
+    "honor_level": 0.5000735995285966
+  },
+  {
+    "text": "현명한 생각이에요",
+    "label": 0,
+    "score": 0.9991891980171204,
+    "is_toxic": false,
+    "honor_level": 0.5050695454104323
+  },
+  {
+    "text": "관종이냐",
+    "label": 1,
+    "score": 0.9965008497238159,
+    "is_toxic": true,
+    "honor_level": 0.500087553369043
+  },
+  {
+    "text": "고생 많으셨겠어요, 응원할게요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.500087553369043
+  },
+  {
+    "text": "비위 상한다",
+    "label": 1,
+    "score": 0.9932037591934204,
+    "is_toxic": true,
+    "honor_level": 0.49512153472534576
+  },
+  {
+    "text": "보기 좋다",
+    "label": 0,
+    "score": 0.999182403087616,
+    "is_toxic": false,
+    "honor_level": 0.5001169711414818
+  },
+  {
+    "text": "진짜 힐링이 되었어요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5001169711414818
+  },
+  {
+    "text": "이딴걸로 어그로 끄는 수준이 보이네",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5001169711414818
+  },
+  {
+    "text": "추천 누르고 갑니다",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5001169711414818
+  },
+  {
+    "text": "도대체 누가 널 좋다고 하냐",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5001169711414818
+  },
+  {
+    "text": "세심한 배려가 느껴져요",
+    "label": 0,
+    "score": 0.9992768168449402,
+    "is_toxic": false,
+    "honor_level": 0.5051133549522594
+  },
+  {
+    "text": "한심하다",
+    "label": 1,
+    "score": 0.7271625995635986,
+    "is_toxic": false,
+    "honor_level": 0.50874878769641
+  },
+  {
+    "text": "오늘도 좋은 하루 보내세요",
+    "label": 0,
+    "score": 0.9990873336791992,
+    "is_toxic": false,
+    "honor_level": 0.5137426949362159
+  },
+  {
+    "text": "그냥 닥쳐 제발",
+    "label": 1,
+    "score": 0.9927155375480652,
+    "is_toxic": true,
+    "honor_level": 0.5087828669666438
+  },
+  {
+    "text": "자극받고 갑니다",
+    "label": 0,
+    "score": 0.9987466335296631,
+    "is_toxic": false,
+    "honor_level": 0.5137750592929116
+  },
+  {
+    "text": "입 열지 마라",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5137750592929116
+  },
+  {
+    "text": "훈훈하네",
+    "label": 0,
+    "score": 0.9994761347770691,
+    "is_toxic": false,
+    "honor_level": 0.5187686469097186
+  },
+  {
+    "text": "말하는 수준이 초딩도 못 미침",
+    "label": 1,
+    "score": 0.9945374131202698,
+    "is_toxic": true,
+    "honor_level": 0.5088211234561659
+  },
+  {
+    "text": "말투 너무 좋아요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5088211234561659
+  },
+  {
+    "text": "이게 웃기냐 병신",
+    "label": 1,
+    "score": 0.9970834851264954,
+    "is_toxic": true,
+    "honor_level": 0.5038372577361041
+  },
+  {
+    "text": "당신의 글에서 감동을 받았어요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5038372577361041
+  },
+  {
+    "text": "왜 살아있냐",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5088322949863315
+  },
+  {
+    "text": "정말 진심이 느껴졌어요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5038906248864445
+  },
+  {
+    "text": "재능이 없다",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5088861932854464
+  },
+  {
+    "text": "센스 있다",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5039268492515653
+  },
+  {
+    "text": "쓸모가 없네",
+    "label": 1,
+    "score": 0.9968248605728149,
+    "is_toxic": true,
+    "honor_level": 0.5039410669673741
+  },
+  {
+    "text": "완전 제 스타일이에요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.49898919842308853
+  },
+  {
+    "text": "비호감이야",
+    "label": 1,
+    "score": 0.9814824461936951,
+    "is_toxic": false,
+    "honor_level": 0.5088900239354016
+  },
+  {
+    "text": "진심으로 응원합니다, 항상 힘내세요",
+    "label": 0,
+    "score": 0.9991739392280579,
+    "is_toxic": false,
+    "honor_level": 0.5108990474775933
+  },
+  {
+    "text": "인류애 상실",
+    "label": 1,
+    "score": 0.5164242386817932,
+    "is_toxic": false,
+    "honor_level": 0.5184702325188733
+  },
+  {
+    "text": "참 따뜻한 말이네요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5184702325188733
+  },
+  {
+    "text": "너같은 놈은 인터넷 하지 마라",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5184702325188733
+  },
+  {
+    "text": "진짜 배울 점이 많은 사람입니다",
+    "label": 0,
+    "score": 0.9992343187332153,
+    "is_toxic": false,
+    "honor_level": 0.5234595863469887
+  },
+  {
+    "text": "입 열지 마라",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5234595863469887
+  },
+  {
+    "text": "좋은 생각 나눠줘서 고마워요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5234595863469887
+  },
+  {
+    "text": "웃기지도 않음",
+    "label": 1,
+    "score": 0.6190396547317505,
+    "is_toxic": false,
+    "honor_level": 0.5265479708240345
+  },
+  {
+    "text": "진짜 기가 차서 말이 안 나온다",
+    "label": 1,
+    "score": 0.8321827054023743,
+    "is_toxic": true,
+    "honor_level": 0.5223987876571399
+  },
+  {
+    "text": "이런 시선 너무 멋져요. 감사합니다",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5273840943784875
+  },
+  {
+    "text": "뇌가 우동사리냐",
+    "label": 1,
+    "score": 0.9970178604125977,
+    "is_toxic": true,
+    "honor_level": 0.5174806750453153
+  },
+  {
+    "text": "한 줄 한 줄 공감돼요",
+    "label": 0,
+    "score": 0.9992601275444031,
+    "is_toxic": false,
+    "honor_level": 0.5274566491967771
+  },
+  {
+    "text": "정신 차려라 좀",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5225106977007536
+  },
+  {
+    "text": "생각이 깊고 따뜻한 분 같아요",
+    "label": 0,
+    "score": 0.9994322657585144,
+    "is_toxic": false,
+    "honor_level": 0.5324796792266675
+  },
+  {
+    "text": "이건 저장각입니다",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5275483998017507
+  },
+  {
+    "text": "도움이 많이 되었어요",
+    "label": 0,
+    "score": 0.9989499449729919,
+    "is_toxic": false,
+    "honor_level": 0.5375005974397595
+  },
+  {
+    "text": "그만 좀 주접 떨어라",
+    "label": 1,
+    "score": 0.9936128258705139,
+    "is_toxic": true,
+    "honor_level": 0.5295859368509956
+  },
+  {
+    "text": "정말 대단하시네요 존경합니다",
+    "label": 0,
+    "score": 0.9992954730987549,
+    "is_toxic": false,
+    "honor_level": 0.5395350989233157
+  },
+  {
+    "text": "말하는 꼬라지 보소",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5395350989233157
+  },
+  {
+    "text": "오늘도 파이팅",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5444995577464029
+  },
+  {
+    "text": "눈 버렸다",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.539554368479522
+  },
+  {
+    "text": "진정성 있는 글 감사합니다",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5445190488790648
+  },
+  {
+    "text": "그 입 다물어",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5445190488790648
+  },
+  {
+    "text": "이런 따뜻한 말 너무 고맙다",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5494762088479146
+  },
+  {
+    "text": "개소리 작작해 좆같은놈아",
+    "label": 1,
+    "score": 0.9953218102455139,
+    "is_toxic": true,
+    "honor_level": 0.5445483286671574
+  },
+  {
+    "text": "당신 덕분에 기분 좋아졌어요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5495045820621525
+  },
+  {
+    "text": "정말 감동입니다. 눈물 나네요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5495045820621525
+  },
+  {
+    "text": "쟤는 태어난 게 실수",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5445805197438984
+  },
+  {
+    "text": "좋은 하루 되세요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5495372107275862
+  },
+  {
+    "text": "저딴 걸 왜 봐야 돼?",
+    "label": 1,
+    "score": 0.9959568381309509,
+    "is_toxic": true,
+    "honor_level": 0.5446063068087165
+  },
+  {
+    "text": "귀엽다 ㅋㅋ",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5446063068087165
+  },
+  {
+    "text": "내 눈이 아깝다",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5482131827692664
+  },
+  {
+    "text": "이런 글 덕분에 하루가 좋아졌어요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5482131827692664
+  },
+  {
+    "text": "도저히 못 봐주겠네",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5432957566451201
+  },
+  {
+    "text": "당신 같은 사람 많았으면",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5432957566451201
+  },
+  {
+    "text": "니 어머니가 불쌍하시다",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5432957566451201
+  },
+  {
+    "text": "이런 글을 읽을 수 있어 감사해요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5482556665080793
+  },
+  {
+    "text": "왜 이렇게 못생겼냐",
+    "label": 1,
+    "score": 0.9956600069999695,
+    "is_toxic": true,
+    "honor_level": 0.5433237365371166
+  },
+  {
+    "text": "말에 진심이 느껴져요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5433237365371166
+  },
+  {
+    "text": "이딴 걸 왜 공유함?",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5383757485516077
+  },
+  {
+    "text": "표현력이 대단하네요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5383757485516077
+  },
+  {
+    "text": "뇌가 없는 수준인데?",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5334274222892003
+  },
+  {
+    "text": "마음이 따뜻해졌어요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5384019256544025
+  },
+  {
+    "text": "그 입 좀 다물라고",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5412377225642543
+  },
+  {
+    "text": "이런 분이 많아졌으면 해요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5412377225642543
+  },
+  {
+    "text": "누가 좀 말려라 쟤",
+    "label": 1,
+    "score": 0.9795066118240356,
+    "is_toxic": true,
+    "honor_level": 0.536373503499852
+  },
+  {
+    "text": "너무 감동적이야",
+    "label": 0,
+    "score": 0.9990665316581726,
+    "is_toxic": false,
+    "honor_level": 0.5463047898912547
+  },
+  {
+    "text": "정말 수준 떨어진다",
+    "label": 1,
+    "score": 0.982254683971405,
+    "is_toxic": true,
+    "honor_level": 0.5463102784437864
+  },
+  {
+    "text": "이건 정말 멋진 이야기야",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5512632907342266
+  },
+  {
+    "text": "그냥 사라졌으면",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5512632907342266
+  },
+  {
+    "text": "고마워요, 덕분에 웃었어요",
+    "label": 0,
+    "score": 0.9992585778236389,
+    "is_toxic": false,
+    "honor_level": 0.556207064091844
+  },
+  {
+    "text": "왜 사냐 진짜",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.556207064091844
+  },
+  {
+    "text": "진짜 최고다",
+    "label": 0,
+    "score": 0.9986141920089722,
+    "is_toxic": false,
+    "honor_level": 0.5660585117148547
+  },
+  {
+    "text": "너무 비참하다",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5660585117148547
+  },
+  {
+    "text": "세상 따뜻하네요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5660585117148547
+  },
+  {
+    "text": "구역질 난다",
+    "label": 1,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.5660585117148547
+  },
+  {
+    "text": "이해심 깊은 분 같아요",
+    "label": 0,
+    "score": 0.5,
+    "is_toxic": false,
+    "honor_level": 0.55950862963994
+  }
+]

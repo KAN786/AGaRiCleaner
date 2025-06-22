@@ -12,7 +12,7 @@ class UserServices:
     honorLevel: float
     messageEvalList: deque[tuple[bool, float]]
 
-    learningRate = 0.05
+    learningRate = 0.02
     bayesianCnt = 50
 
     def __init__(self, system_id: str, server_id: str): # server_id used to be int, probably outdated
@@ -115,6 +115,13 @@ def get_server_average_honor_score(server_id: str):
     user_docs = users_ref.stream()
     scores = [doc.to_dict().get("honor_score", 0.5) for doc in user_docs]
     return sum(scores) / len(scores) if scores else 0.5
+
+def get_user_honor_score(server_id: str, system_id: str):
+    user_ref = db.collection("servers").document(server_id).collection("users").document(system_id)
+    user_snapshot = user_ref.get()
+    user_data = user_snapshot.to_dict()
+    return user_data.get("honor_score")
+
 
 if __name__ == "__main__":
     messageServices = MessageServices(Client("CLOUDYUL/AGaRiCleaner_Detector"))
