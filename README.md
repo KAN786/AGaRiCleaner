@@ -1,6 +1,16 @@
 # AGaRiCleaner
 AI 기반의 실시간 채팅 필터링 시스템입니다. 명예도 기반의 확률적 메시지 필터링을 통해 유해 발언을 효과적으로 제어합니다.
 
+## Contributors
+- KAN786 (강대한)
+- daehan (강대한)
+- m1ntree (황민)
+
+daehan계정은 KAN786과 동일 인물이지만, vscode와 github 계정 연동 문제로 github에서는 KAN786과 개별인물로 표시되었습니다.
+또한, 초반 프로토타이핑 과정에서 주로 사용된 feature-daehan(강대한)과 feature-minh branch(황민)들은 clone된 후 main branch로 merge 없이 
+개별 feature branch로 push되어서 github contributions에 나타나지 않습니다. Insights 메뉴 확인시 이 점 양해 부탁드립니다.
+
+
 ## 주요 기능
 - ai/키워드 기반 메시지 평가
 - FastAPI + SQLite 기반 REST API
